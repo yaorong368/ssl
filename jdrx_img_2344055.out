@@ -1,0 +1,336 @@
+[2026-02-17 05:32:48] ===== START TRAINING =====
+[2026-02-17 05:32:48] Command: main.py --data_dir ../datas/imagenet100/ --out_dir ./runs/imagenet100/ --batch_size 256 --img_size 32 --amp --num_workers 4 --projector 512-512 --epochs 1000 --method jdrx --num_subsets 8
+[2026-02-17 05:32:48] Args: {'data_dir': '../datas/imagenet100/', 'out_dir': './runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8', 'epochs': 1000, 'method': 'jdrx', 'batch_size': 256, 'num_workers': 4, 'weight_decay': 1e-06, 'num_subsets': 8, 'lambd': 0.005, 'projector': '512-512', 'learning_rate_weights': 0.2, 'learning_rate_biases': 0.0048, 'img_size': 32, 'amp': True, 'resume': '', 'linear_eval_every': 10, 'linear_eval_epochs': 10, 'linear_eval_lr': 0.1, 'linear_eval_batch_size': 256, 'log_name': 'train.log'}
+[2026-02-17 05:32:48] Distributed=False world_size=1 local_rank=0 device=cuda:0
+[2026-02-17 05:32:48] Global batch=256 per_gpu_batch=256
+[2026-02-17 05:32:48] Steps per epoch (len(loader)) = 507
+[2026-02-17 05:32:49] Running non-DDP (single process)
+[2026-02-17 05:32:49] AMP enabled = True
+[2026-02-17 05:38:29] Epoch 0 done in 339.5s | avg_loss=358.403067 | global_step=507
+[2026-02-17 05:38:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 05:44:05] Epoch 1 done in 335.8s | avg_loss=261.646166 | global_step=1014
+[2026-02-17 05:44:05] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 05:49:41] Epoch 2 done in 335.8s | avg_loss=219.115947 | global_step=1521
+[2026-02-17 05:49:41] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 05:55:16] Epoch 3 done in 335.2s | avg_loss=183.091219 | global_step=2028
+[2026-02-17 05:55:17] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:00:52] Epoch 4 done in 334.9s | avg_loss=163.490312 | global_step=2535
+[2026-02-17 06:00:52] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:06:29] Epoch 5 done in 336.7s | avg_loss=150.117614 | global_step=3042
+[2026-02-17 06:06:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:12:05] Epoch 6 done in 335.8s | avg_loss=139.586880 | global_step=3549
+[2026-02-17 06:12:05] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:17:40] Epoch 7 done in 335.2s | avg_loss=131.742143 | global_step=4056
+[2026-02-17 06:17:41] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:23:16] Epoch 8 done in 334.8s | avg_loss=126.241345 | global_step=4563
+[2026-02-17 06:23:16] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:28:51] Epoch 9 done in 335.2s | avg_loss=121.306250 | global_step=5070
+[2026-02-17 06:28:52] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:34:28] Epoch 10 done in 336.1s | avg_loss=117.146202 | global_step=5577
+[2026-02-17 06:34:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:40:04] Epoch 11 done in 335.5s | avg_loss=114.109373 | global_step=6084
+[2026-02-17 06:40:04] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:45:41] Epoch 12 done in 336.8s | avg_loss=111.314402 | global_step=6591
+[2026-02-17 06:45:41] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:51:16] Epoch 13 done in 335.0s | avg_loss=109.073382 | global_step=7098
+[2026-02-17 06:51:16] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 06:56:52] Epoch 14 done in 335.4s | avg_loss=107.296069 | global_step=7605
+[2026-02-17 06:56:52] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:02:28] Epoch 15 done in 335.5s | avg_loss=104.905750 | global_step=8112
+[2026-02-17 07:02:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:08:03] Epoch 16 done in 335.2s | avg_loss=103.936133 | global_step=8619
+[2026-02-17 07:08:04] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:13:40] Epoch 17 done in 336.4s | avg_loss=102.539053 | global_step=9126
+[2026-02-17 07:13:40] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:19:16] Epoch 18 done in 335.3s | avg_loss=101.300007 | global_step=9633
+[2026-02-17 07:19:16] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:24:51] Epoch 19 done in 334.7s | avg_loss=100.003947 | global_step=10140
+[2026-02-17 07:24:51] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:30:27] Epoch 20 done in 336.1s | avg_loss=99.163814 | global_step=10647
+[2026-02-17 07:30:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:36:03] Epoch 21 done in 335.1s | avg_loss=98.160300 | global_step=11154
+[2026-02-17 07:36:03] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:41:40] Epoch 22 done in 336.4s | avg_loss=97.293880 | global_step=11661
+[2026-02-17 07:41:40] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:47:15] Epoch 23 done in 335.3s | avg_loss=96.649065 | global_step=12168
+[2026-02-17 07:47:16] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:52:51] Epoch 24 done in 335.9s | avg_loss=95.960914 | global_step=12675
+[2026-02-17 07:52:52] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 07:58:29] Epoch 25 done in 336.8s | avg_loss=95.084217 | global_step=13182
+[2026-02-17 07:58:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:04:05] Epoch 26 done in 336.2s | avg_loss=94.671750 | global_step=13689
+[2026-02-17 08:04:05] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:09:41] Epoch 27 done in 336.0s | avg_loss=93.897441 | global_step=14196
+[2026-02-17 08:09:42] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:15:18] Epoch 28 done in 336.5s | avg_loss=93.551878 | global_step=14703
+[2026-02-17 08:15:19] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:20:54] Epoch 29 done in 335.5s | avg_loss=92.850694 | global_step=15210
+[2026-02-17 08:20:55] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:26:30] Epoch 30 done in 335.1s | avg_loss=92.100633 | global_step=15717
+[2026-02-17 08:26:30] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:32:05] Epoch 31 done in 335.3s | avg_loss=91.692912 | global_step=16224
+[2026-02-17 08:32:06] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:37:42] Epoch 32 done in 336.3s | avg_loss=91.364924 | global_step=16731
+[2026-02-17 08:37:42] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:43:18] Epoch 33 done in 335.9s | avg_loss=90.750551 | global_step=17238
+[2026-02-17 08:43:19] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:48:54] Epoch 34 done in 335.7s | avg_loss=90.221319 | global_step=17745
+[2026-02-17 08:48:55] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 08:54:28] Epoch 35 done in 333.3s | avg_loss=90.020956 | global_step=18252
+[2026-02-17 08:54:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:00:01] Epoch 36 done in 332.3s | avg_loss=89.216828 | global_step=18759
+[2026-02-17 09:00:01] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:05:32] Epoch 37 done in 331.5s | avg_loss=89.105089 | global_step=19266
+[2026-02-17 09:05:33] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:11:05] Epoch 38 done in 332.0s | avg_loss=88.578150 | global_step=19773
+[2026-02-17 09:11:05] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:16:37] Epoch 39 done in 331.6s | avg_loss=88.127208 | global_step=20280
+[2026-02-17 09:16:37] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:22:09] Epoch 40 done in 331.6s | avg_loss=87.902390 | global_step=20787
+[2026-02-17 09:22:09] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:27:40] Epoch 41 done in 331.4s | avg_loss=87.618752 | global_step=21294
+[2026-02-17 09:27:41] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:33:12] Epoch 42 done in 331.2s | avg_loss=87.246585 | global_step=21801
+[2026-02-17 09:33:12] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:38:44] Epoch 43 done in 331.8s | avg_loss=87.113267 | global_step=22308
+[2026-02-17 09:38:44] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:44:15] Epoch 44 done in 330.7s | avg_loss=86.656999 | global_step=22815
+[2026-02-17 09:44:15] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:49:47] Epoch 45 done in 331.4s | avg_loss=86.330271 | global_step=23322
+[2026-02-17 09:49:47] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 09:55:19] Epoch 46 done in 331.6s | avg_loss=85.975942 | global_step=23829
+[2026-02-17 09:55:19] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:00:51] Epoch 47 done in 332.3s | avg_loss=85.779607 | global_step=24336
+[2026-02-17 10:00:52] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:06:23] Epoch 48 done in 331.8s | avg_loss=85.307473 | global_step=24843
+[2026-02-17 10:06:24] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:11:55] Epoch 49 done in 331.3s | avg_loss=85.213020 | global_step=25350
+[2026-02-17 10:11:55] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:17:28] Epoch 50 done in 332.2s | avg_loss=84.843670 | global_step=25857
+[2026-02-17 10:17:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:22:59] Epoch 51 done in 331.4s | avg_loss=84.821310 | global_step=26364
+[2026-02-17 10:23:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:28:32] Epoch 52 done in 332.0s | avg_loss=84.310012 | global_step=26871
+[2026-02-17 10:28:32] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:34:03] Epoch 53 done in 331.1s | avg_loss=84.202326 | global_step=27378
+[2026-02-17 10:34:03] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:39:35] Epoch 54 done in 331.6s | avg_loss=84.126515 | global_step=27885
+[2026-02-17 10:39:35] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:45:07] Epoch 55 done in 331.7s | avg_loss=83.899497 | global_step=28392
+[2026-02-17 10:45:08] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:50:40] Epoch 56 done in 332.2s | avg_loss=83.381190 | global_step=28899
+[2026-02-17 10:50:40] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 10:56:12] Epoch 57 done in 331.5s | avg_loss=83.405668 | global_step=29406
+[2026-02-17 10:56:12] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:01:43] Epoch 58 done in 331.3s | avg_loss=83.143877 | global_step=29913
+[2026-02-17 11:01:44] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:07:16] Epoch 59 done in 332.0s | avg_loss=82.887969 | global_step=30420
+[2026-02-17 11:07:16] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:12:48] Epoch 60 done in 331.6s | avg_loss=82.521634 | global_step=30927
+[2026-02-17 11:12:48] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:18:19] Epoch 61 done in 331.0s | avg_loss=82.381920 | global_step=31434
+[2026-02-17 11:18:19] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:23:50] Epoch 62 done in 330.9s | avg_loss=82.413744 | global_step=31941
+[2026-02-17 11:23:51] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:29:23] Epoch 63 done in 332.5s | avg_loss=82.033948 | global_step=32448
+[2026-02-17 11:29:24] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:34:56] Epoch 64 done in 332.4s | avg_loss=81.907951 | global_step=32955
+[2026-02-17 11:34:56] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:40:27] Epoch 65 done in 330.8s | avg_loss=81.568177 | global_step=33462
+[2026-02-17 11:40:27] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:45:58] Epoch 66 done in 330.1s | avg_loss=81.465097 | global_step=33969
+[2026-02-17 11:45:58] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:51:28] Epoch 67 done in 330.2s | avg_loss=81.330632 | global_step=34476
+[2026-02-17 11:51:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 11:56:58] Epoch 68 done in 329.5s | avg_loss=81.029384 | global_step=34983
+[2026-02-17 11:56:58] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:02:29] Epoch 69 done in 330.3s | avg_loss=81.103319 | global_step=35490
+[2026-02-17 12:02:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:07:59] Epoch 70 done in 330.2s | avg_loss=80.610692 | global_step=35997
+[2026-02-17 12:08:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:13:30] Epoch 71 done in 330.0s | avg_loss=80.543284 | global_step=36504
+[2026-02-17 12:13:30] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:18:59] Epoch 72 done in 329.5s | avg_loss=80.564873 | global_step=37011
+[2026-02-17 12:19:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:24:29] Epoch 73 done in 329.2s | avg_loss=80.252310 | global_step=37518
+[2026-02-17 12:24:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:30:00] Epoch 74 done in 330.4s | avg_loss=80.026591 | global_step=38025
+[2026-02-17 12:30:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:35:29] Epoch 75 done in 328.9s | avg_loss=79.969601 | global_step=38532
+[2026-02-17 12:35:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:40:59] Epoch 76 done in 329.5s | avg_loss=79.769315 | global_step=39039
+[2026-02-17 12:40:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:46:30] Epoch 77 done in 330.5s | avg_loss=79.623352 | global_step=39546
+[2026-02-17 12:46:30] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:52:00] Epoch 78 done in 330.0s | avg_loss=79.368304 | global_step=40053
+[2026-02-17 12:52:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 12:57:30] Epoch 79 done in 329.7s | avg_loss=79.394390 | global_step=40560
+[2026-02-17 12:57:31] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:03:00] Epoch 80 done in 329.1s | avg_loss=79.354560 | global_step=41067
+[2026-02-17 13:03:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:08:29] Epoch 81 done in 328.8s | avg_loss=79.001873 | global_step=41574
+[2026-02-17 13:08:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:13:58] Epoch 82 done in 328.9s | avg_loss=78.970749 | global_step=42081
+[2026-02-17 13:13:58] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:19:28] Epoch 83 done in 329.2s | avg_loss=78.845328 | global_step=42588
+[2026-02-17 13:19:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:24:57] Epoch 84 done in 328.8s | avg_loss=78.587487 | global_step=43095
+[2026-02-17 13:24:57] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:30:27] Epoch 85 done in 329.6s | avg_loss=78.438722 | global_step=43602
+[2026-02-17 13:30:27] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:35:56] Epoch 86 done in 328.8s | avg_loss=78.406583 | global_step=44109
+[2026-02-17 13:35:56] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:41:26] Epoch 87 done in 330.0s | avg_loss=78.275221 | global_step=44616
+[2026-02-17 13:41:27] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:46:56] Epoch 88 done in 329.7s | avg_loss=78.202343 | global_step=45123
+[2026-02-17 13:46:57] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:52:26] Epoch 89 done in 329.4s | avg_loss=77.948488 | global_step=45630
+[2026-02-17 13:52:26] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 13:57:56] Epoch 90 done in 329.8s | avg_loss=78.097118 | global_step=46137
+[2026-02-17 13:57:57] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:03:26] Epoch 91 done in 329.8s | avg_loss=77.707089 | global_step=46644
+[2026-02-17 14:03:27] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:08:56] Epoch 92 done in 329.3s | avg_loss=77.496039 | global_step=47151
+[2026-02-17 14:08:56] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:14:26] Epoch 93 done in 329.9s | avg_loss=77.395477 | global_step=47658
+[2026-02-17 14:14:27] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:19:56] Epoch 94 done in 329.4s | avg_loss=77.348045 | global_step=48165
+[2026-02-17 14:19:56] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:25:26] Epoch 95 done in 329.5s | avg_loss=77.289277 | global_step=48672
+[2026-02-17 14:25:26] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:30:58] Epoch 96 done in 331.5s | avg_loss=77.275500 | global_step=49179
+[2026-02-17 14:30:58] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:36:29] Epoch 97 done in 330.6s | avg_loss=76.895073 | global_step=49686
+[2026-02-17 14:36:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:41:59] Epoch 98 done in 329.7s | avg_loss=77.122625 | global_step=50193
+[2026-02-17 14:41:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:47:29] Epoch 99 done in 329.5s | avg_loss=76.872027 | global_step=50700
+[2026-02-17 14:47:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:52:59] Epoch 100 done in 329.5s | avg_loss=76.716729 | global_step=51207
+[2026-02-17 14:52:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 14:58:28] Epoch 101 done in 329.3s | avg_loss=76.735603 | global_step=51714
+[2026-02-17 14:58:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:03:59] Epoch 102 done in 330.2s | avg_loss=76.568618 | global_step=52221
+[2026-02-17 15:03:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:09:29] Epoch 103 done in 329.3s | avg_loss=76.359797 | global_step=52728
+[2026-02-17 15:09:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:14:59] Epoch 104 done in 329.8s | avg_loss=76.283287 | global_step=53235
+[2026-02-17 15:14:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:20:28] Epoch 105 done in 329.0s | avg_loss=76.129598 | global_step=53742
+[2026-02-17 15:20:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:25:58] Epoch 106 done in 329.3s | avg_loss=75.900852 | global_step=54249
+[2026-02-17 15:25:58] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:31:28] Epoch 107 done in 330.1s | avg_loss=75.921913 | global_step=54756
+[2026-02-17 15:31:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:36:59] Epoch 108 done in 330.7s | avg_loss=75.715041 | global_step=55263
+[2026-02-17 15:37:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:42:29] Epoch 109 done in 329.4s | avg_loss=75.632779 | global_step=55770
+[2026-02-17 15:42:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:47:59] Epoch 110 done in 329.5s | avg_loss=75.549730 | global_step=56277
+[2026-02-17 15:47:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:53:29] Epoch 111 done in 329.6s | avg_loss=75.522067 | global_step=56784
+[2026-02-17 15:53:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 15:59:01] Epoch 112 done in 331.4s | avg_loss=75.559529 | global_step=57291
+[2026-02-17 15:59:01] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:04:32] Epoch 113 done in 331.0s | avg_loss=75.354642 | global_step=57798
+[2026-02-17 16:04:32] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:10:02] Epoch 114 done in 329.3s | avg_loss=75.220244 | global_step=58305
+[2026-02-17 16:10:02] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:15:32] Epoch 115 done in 329.8s | avg_loss=75.242010 | global_step=58812
+[2026-02-17 16:15:32] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:21:01] Epoch 116 done in 329.0s | avg_loss=74.979548 | global_step=59319
+[2026-02-17 16:21:01] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:26:31] Epoch 117 done in 329.5s | avg_loss=74.814572 | global_step=59826
+[2026-02-17 16:26:31] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:32:01] Epoch 118 done in 329.3s | avg_loss=74.983966 | global_step=60333
+[2026-02-17 16:32:01] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:37:30] Epoch 119 done in 329.1s | avg_loss=74.720430 | global_step=60840
+[2026-02-17 16:37:30] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:43:00] Epoch 120 done in 329.4s | avg_loss=74.601143 | global_step=61347
+[2026-02-17 16:43:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:48:29] Epoch 121 done in 329.3s | avg_loss=74.498258 | global_step=61854
+[2026-02-17 16:48:30] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:53:59] Epoch 122 done in 328.9s | avg_loss=74.724895 | global_step=62361
+[2026-02-17 16:53:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 16:59:28] Epoch 123 done in 329.2s | avg_loss=74.513741 | global_step=62868
+[2026-02-17 16:59:29] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:04:59] Epoch 124 done in 330.6s | avg_loss=74.266855 | global_step=63375
+[2026-02-17 17:05:00] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:10:30] Epoch 125 done in 330.4s | avg_loss=74.403906 | global_step=63882
+[2026-02-17 17:10:30] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:16:01] Epoch 126 done in 330.7s | avg_loss=74.164709 | global_step=64389
+[2026-02-17 17:16:01] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:21:33] Epoch 127 done in 331.9s | avg_loss=74.200424 | global_step=64896
+[2026-02-17 17:21:34] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:27:04] Epoch 128 done in 330.7s | avg_loss=73.888522 | global_step=65403
+[2026-02-17 17:27:05] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:32:36] Epoch 129 done in 331.8s | avg_loss=73.732973 | global_step=65910
+[2026-02-17 17:32:37] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:38:10] Epoch 130 done in 332.8s | avg_loss=73.838520 | global_step=66417
+[2026-02-17 17:38:10] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:43:40] Epoch 131 done in 330.3s | avg_loss=73.758333 | global_step=66924
+[2026-02-17 17:43:41] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:49:11] Epoch 132 done in 330.0s | avg_loss=73.651391 | global_step=67431
+[2026-02-17 17:49:11] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 17:54:42] Epoch 133 done in 331.4s | avg_loss=73.505954 | global_step=67938
+[2026-02-17 17:54:43] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:00:15] Epoch 134 done in 332.2s | avg_loss=73.407450 | global_step=68445
+[2026-02-17 18:00:15] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:05:46] Epoch 135 done in 331.0s | avg_loss=73.500474 | global_step=68952
+[2026-02-17 18:05:47] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:11:18] Epoch 136 done in 331.7s | avg_loss=73.380476 | global_step=69459
+[2026-02-17 18:11:19] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:16:50] Epoch 137 done in 331.3s | avg_loss=73.229145 | global_step=69966
+[2026-02-17 18:16:50] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:22:20] Epoch 138 done in 329.5s | avg_loss=73.226881 | global_step=70473
+[2026-02-17 18:22:20] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:27:52] Epoch 139 done in 331.6s | avg_loss=73.232607 | global_step=70980
+[2026-02-17 18:27:52] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:33:23] Epoch 140 done in 330.9s | avg_loss=73.060415 | global_step=71487
+[2026-02-17 18:33:23] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:38:54] Epoch 141 done in 330.4s | avg_loss=72.990300 | global_step=71994
+[2026-02-17 18:38:54] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:44:25] Epoch 142 done in 331.2s | avg_loss=72.778115 | global_step=72501
+[2026-02-17 18:44:26] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:49:56] Epoch 143 done in 330.8s | avg_loss=72.596030 | global_step=73008
+[2026-02-17 18:49:57] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 18:55:28] Epoch 144 done in 331.1s | avg_loss=72.745322 | global_step=73515
+[2026-02-17 18:55:28] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:01:01] Epoch 145 done in 332.8s | avg_loss=72.788023 | global_step=74022
+[2026-02-17 19:01:01] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:06:32] Epoch 146 done in 330.9s | avg_loss=72.717537 | global_step=74529
+[2026-02-17 19:06:33] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:12:03] Epoch 147 done in 330.8s | avg_loss=72.444080 | global_step=75036
+[2026-02-17 19:12:04] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:17:34] Epoch 148 done in 330.6s | avg_loss=72.480709 | global_step=75543
+[2026-02-17 19:17:35] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:23:07] Epoch 149 done in 331.9s | avg_loss=72.455115 | global_step=76050
+[2026-02-17 19:23:07] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:28:37] Epoch 150 done in 330.1s | avg_loss=72.429057 | global_step=76557
+[2026-02-17 19:28:37] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:34:08] Epoch 151 done in 330.7s | avg_loss=72.345565 | global_step=77064
+[2026-02-17 19:34:09] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:39:40] Epoch 152 done in 331.4s | avg_loss=72.106029 | global_step=77571
+[2026-02-17 19:39:40] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:45:13] Epoch 153 done in 332.5s | avg_loss=71.976550 | global_step=78078
+[2026-02-17 19:45:13] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:50:45] Epoch 154 done in 331.6s | avg_loss=72.023642 | global_step=78585
+[2026-02-17 19:50:45] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 19:56:16] Epoch 155 done in 330.8s | avg_loss=71.931647 | global_step=79092
+[2026-02-17 19:56:16] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:01:46] Epoch 156 done in 330.2s | avg_loss=71.884955 | global_step=79599
+[2026-02-17 20:01:47] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:07:17] Epoch 157 done in 330.6s | avg_loss=71.940680 | global_step=80106
+[2026-02-17 20:07:18] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:12:48] Epoch 158 done in 330.1s | avg_loss=71.805673 | global_step=80613
+[2026-02-17 20:12:48] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:18:23] Epoch 159 done in 335.0s | avg_loss=71.663059 | global_step=81120
+[2026-02-17 20:18:24] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:23:56] Epoch 160 done in 332.2s | avg_loss=71.578769 | global_step=81627
+[2026-02-17 20:23:56] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:29:27] Epoch 161 done in 330.5s | avg_loss=71.511363 | global_step=82134
+[2026-02-17 20:29:27] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:34:58] Epoch 162 done in 331.1s | avg_loss=71.434598 | global_step=82641
+[2026-02-17 20:34:59] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt
+[2026-02-17 20:40:30] Epoch 163 done in 331.2s | avg_loss=71.450744 | global_step=83148
+[2026-02-17 20:40:30] Saved checkpoint (overwrite): ./runs/imagenet100/jdrx_bs256_dim512_ep1000_subsize8/ckpt_latest.pt

@@ -1,0 +1,336 @@
+[2026-02-17 05:33:09] ===== START TRAINING =====
+[2026-02-17 05:33:09] Command: main.py --data_dir ../datas/imagenet100/ --out_dir ./runs/imagenet100/ --batch_size 256 --img_size 32 --amp --num_workers 4 --projector 512-512 --epochs 1000 --method barlow
+[2026-02-17 05:33:09] Args: {'data_dir': '../datas/imagenet100/', 'out_dir': './runs/imagenet100/barlow_bs256_dim512_ep1000', 'epochs': 1000, 'method': 'barlow', 'batch_size': 256, 'num_workers': 4, 'weight_decay': 1e-06, 'num_subsets': 4, 'lambd': 0.005, 'projector': '512-512', 'learning_rate_weights': 0.2, 'learning_rate_biases': 0.0048, 'img_size': 32, 'amp': True, 'resume': '', 'linear_eval_every': 10, 'linear_eval_epochs': 10, 'linear_eval_lr': 0.1, 'linear_eval_batch_size': 256, 'log_name': 'train.log'}
+[2026-02-17 05:33:10] Distributed=False world_size=1 local_rank=0 device=cuda:0
+[2026-02-17 05:33:10] Global batch=256 per_gpu_batch=256
+[2026-02-17 05:33:10] Steps per epoch (len(loader)) = 507
+[2026-02-17 05:33:11] Running non-DDP (single process)
+[2026-02-17 05:33:11] AMP enabled = True
+[2026-02-17 05:38:50] Epoch 0 done in 338.8s | avg_loss=296.780823 | global_step=507
+[2026-02-17 05:38:50] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 05:44:26] Epoch 1 done in 335.8s | avg_loss=204.186253 | global_step=1014
+[2026-02-17 05:44:26] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 05:50:01] Epoch 2 done in 335.2s | avg_loss=166.959243 | global_step=1521
+[2026-02-17 05:50:02] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 05:55:36] Epoch 3 done in 334.7s | avg_loss=136.540790 | global_step=2028
+[2026-02-17 05:55:37] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:01:12] Epoch 4 done in 335.1s | avg_loss=116.079186 | global_step=2535
+[2026-02-17 06:01:12] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:06:46] Epoch 5 done in 334.1s | avg_loss=103.856708 | global_step=3042
+[2026-02-17 06:06:47] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:12:22] Epoch 6 done in 335.1s | avg_loss=94.292628 | global_step=3549
+[2026-02-17 06:12:22] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:17:58] Epoch 7 done in 335.7s | avg_loss=88.437770 | global_step=4056
+[2026-02-17 06:17:58] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:23:33] Epoch 8 done in 334.6s | avg_loss=82.988374 | global_step=4563
+[2026-02-17 06:23:33] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:29:08] Epoch 9 done in 335.3s | avg_loss=78.786983 | global_step=5070
+[2026-02-17 06:29:09] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:34:43] Epoch 10 done in 334.5s | avg_loss=74.453224 | global_step=5577
+[2026-02-17 06:34:44] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:40:19] Epoch 11 done in 334.8s | avg_loss=71.647803 | global_step=6084
+[2026-02-17 06:40:19] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:45:54] Epoch 12 done in 335.1s | avg_loss=68.338942 | global_step=6591
+[2026-02-17 06:45:54] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:51:31] Epoch 13 done in 336.2s | avg_loss=66.448318 | global_step=7098
+[2026-02-17 06:51:31] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 06:57:07] Epoch 14 done in 335.7s | avg_loss=63.761092 | global_step=7605
+[2026-02-17 06:57:07] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:02:43] Epoch 15 done in 335.7s | avg_loss=62.139622 | global_step=8112
+[2026-02-17 07:02:43] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:08:20] Epoch 16 done in 337.0s | avg_loss=60.429357 | global_step=8619
+[2026-02-17 07:08:21] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:13:56] Epoch 17 done in 335.0s | avg_loss=58.803504 | global_step=9126
+[2026-02-17 07:13:56] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:19:32] Epoch 18 done in 335.8s | avg_loss=57.848780 | global_step=9633
+[2026-02-17 07:19:32] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:25:08] Epoch 19 done in 335.8s | avg_loss=56.076961 | global_step=10140
+[2026-02-17 07:25:08] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:30:44] Epoch 20 done in 335.5s | avg_loss=55.354277 | global_step=10647
+[2026-02-17 07:30:44] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:36:19] Epoch 21 done in 335.1s | avg_loss=54.318352 | global_step=11154
+[2026-02-17 07:36:20] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:41:55] Epoch 22 done in 335.1s | avg_loss=53.430664 | global_step=11661
+[2026-02-17 07:41:55] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:47:31] Epoch 23 done in 335.5s | avg_loss=52.405501 | global_step=12168
+[2026-02-17 07:47:31] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:53:06] Epoch 24 done in 335.2s | avg_loss=51.523358 | global_step=12675
+[2026-02-17 07:53:06] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 07:58:42] Epoch 25 done in 335.7s | avg_loss=50.880969 | global_step=13182
+[2026-02-17 07:58:42] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:04:18] Epoch 26 done in 335.4s | avg_loss=50.114830 | global_step=13689
+[2026-02-17 08:04:18] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:09:53] Epoch 27 done in 334.5s | avg_loss=49.874857 | global_step=14196
+[2026-02-17 08:09:53] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:15:28] Epoch 28 done in 334.9s | avg_loss=49.203862 | global_step=14703
+[2026-02-17 08:15:28] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:21:04] Epoch 29 done in 335.6s | avg_loss=48.771356 | global_step=15210
+[2026-02-17 08:21:04] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:26:39] Epoch 30 done in 334.8s | avg_loss=47.848074 | global_step=15717
+[2026-02-17 08:26:40] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:32:14] Epoch 31 done in 334.9s | avg_loss=47.487629 | global_step=16224
+[2026-02-17 08:32:15] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:37:50] Epoch 32 done in 334.9s | avg_loss=47.025656 | global_step=16731
+[2026-02-17 08:37:50] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:43:27] Epoch 33 done in 336.7s | avg_loss=46.633499 | global_step=17238
+[2026-02-17 08:43:27] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:49:01] Epoch 34 done in 334.2s | avg_loss=46.088362 | global_step=17745
+[2026-02-17 08:49:02] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 08:54:34] Epoch 35 done in 332.4s | avg_loss=45.448872 | global_step=18252
+[2026-02-17 08:54:34] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:00:05] Epoch 36 done in 330.8s | avg_loss=45.251255 | global_step=18759
+[2026-02-17 09:00:05] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:05:36] Epoch 37 done in 330.8s | avg_loss=44.872299 | global_step=19266
+[2026-02-17 09:05:37] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:11:07] Epoch 38 done in 330.0s | avg_loss=44.435322 | global_step=19773
+[2026-02-17 09:11:07] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:16:37] Epoch 39 done in 330.2s | avg_loss=44.345124 | global_step=20280
+[2026-02-17 09:16:37] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:22:08] Epoch 40 done in 330.6s | avg_loss=43.932432 | global_step=20787
+[2026-02-17 09:22:08] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:27:40] Epoch 41 done in 331.6s | avg_loss=43.365887 | global_step=21294
+[2026-02-17 09:27:40] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:33:11] Epoch 42 done in 330.7s | avg_loss=43.465725 | global_step=21801
+[2026-02-17 09:33:11] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:38:42] Epoch 43 done in 330.9s | avg_loss=42.820669 | global_step=22308
+[2026-02-17 09:38:43] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:44:13] Epoch 44 done in 330.5s | avg_loss=42.621868 | global_step=22815
+[2026-02-17 09:44:13] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:49:44] Epoch 45 done in 330.5s | avg_loss=42.381700 | global_step=23322
+[2026-02-17 09:49:44] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 09:55:16] Epoch 46 done in 331.6s | avg_loss=42.108306 | global_step=23829
+[2026-02-17 09:55:16] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:00:47] Epoch 47 done in 330.5s | avg_loss=41.880583 | global_step=24336
+[2026-02-17 10:00:47] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:06:18] Epoch 48 done in 331.2s | avg_loss=41.670284 | global_step=24843
+[2026-02-17 10:06:19] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:11:50] Epoch 49 done in 331.1s | avg_loss=41.324235 | global_step=25350
+[2026-02-17 10:11:50] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:17:21] Epoch 50 done in 330.9s | avg_loss=41.225275 | global_step=25857
+[2026-02-17 10:17:21] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:22:52] Epoch 51 done in 330.3s | avg_loss=40.941162 | global_step=26364
+[2026-02-17 10:22:52] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:28:23] Epoch 52 done in 330.9s | avg_loss=40.746898 | global_step=26871
+[2026-02-17 10:28:23] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:33:55] Epoch 53 done in 331.3s | avg_loss=40.391458 | global_step=27378
+[2026-02-17 10:33:55] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:39:27] Epoch 54 done in 331.7s | avg_loss=40.193811 | global_step=27885
+[2026-02-17 10:39:27] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:44:58] Epoch 55 done in 330.8s | avg_loss=39.781617 | global_step=28392
+[2026-02-17 10:44:58] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:50:29] Epoch 56 done in 331.1s | avg_loss=39.849753 | global_step=28899
+[2026-02-17 10:50:30] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 10:56:00] Epoch 57 done in 330.3s | avg_loss=39.730903 | global_step=29406
+[2026-02-17 10:56:00] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:01:31] Epoch 58 done in 331.0s | avg_loss=39.293456 | global_step=29913
+[2026-02-17 11:01:32] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:07:03] Epoch 59 done in 331.4s | avg_loss=39.075228 | global_step=30420
+[2026-02-17 11:07:03] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:12:34] Epoch 60 done in 330.8s | avg_loss=38.922470 | global_step=30927
+[2026-02-17 11:12:34] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:18:05] Epoch 61 done in 330.7s | avg_loss=38.802976 | global_step=31434
+[2026-02-17 11:18:06] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:23:37] Epoch 62 done in 331.8s | avg_loss=38.631021 | global_step=31941
+[2026-02-17 11:23:38] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:29:09] Epoch 63 done in 331.0s | avg_loss=38.459644 | global_step=32448
+[2026-02-17 11:29:09] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:34:41] Epoch 64 done in 332.0s | avg_loss=37.974064 | global_step=32955
+[2026-02-17 11:34:41] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:40:12] Epoch 65 done in 330.9s | avg_loss=38.046211 | global_step=33462
+[2026-02-17 11:40:12] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:45:43] Epoch 66 done in 330.6s | avg_loss=37.914038 | global_step=33969
+[2026-02-17 11:45:43] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:51:13] Epoch 67 done in 329.5s | avg_loss=37.675072 | global_step=34476
+[2026-02-17 11:51:13] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 11:56:42] Epoch 68 done in 329.1s | avg_loss=37.503916 | global_step=34983
+[2026-02-17 11:56:43] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:02:12] Epoch 69 done in 329.6s | avg_loss=37.318041 | global_step=35490
+[2026-02-17 12:02:13] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:07:42] Epoch 70 done in 328.9s | avg_loss=37.383756 | global_step=35997
+[2026-02-17 12:07:42] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:13:11] Epoch 71 done in 329.1s | avg_loss=36.877560 | global_step=36504
+[2026-02-17 12:13:11] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:18:41] Epoch 72 done in 329.4s | avg_loss=36.817415 | global_step=37011
+[2026-02-17 12:18:41] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:24:11] Epoch 73 done in 329.6s | avg_loss=36.799285 | global_step=37518
+[2026-02-17 12:24:11] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:29:40] Epoch 74 done in 328.8s | avg_loss=36.436412 | global_step=38025
+[2026-02-17 12:29:40] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:35:10] Epoch 75 done in 329.5s | avg_loss=36.569213 | global_step=38532
+[2026-02-17 12:35:10] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:40:39] Epoch 76 done in 329.0s | avg_loss=36.234898 | global_step=39039
+[2026-02-17 12:40:39] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:46:09] Epoch 77 done in 329.4s | avg_loss=36.090199 | global_step=39546
+[2026-02-17 12:46:09] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:51:39] Epoch 78 done in 329.9s | avg_loss=35.933691 | global_step=40053
+[2026-02-17 12:51:39] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 12:57:10] Epoch 79 done in 330.3s | avg_loss=35.855159 | global_step=40560
+[2026-02-17 12:57:10] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:02:40] Epoch 80 done in 329.9s | avg_loss=35.680972 | global_step=41067
+[2026-02-17 13:02:40] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:08:09] Epoch 81 done in 328.9s | avg_loss=35.426189 | global_step=41574
+[2026-02-17 13:08:10] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:13:39] Epoch 82 done in 329.3s | avg_loss=35.431819 | global_step=42081
+[2026-02-17 13:13:39] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:19:09] Epoch 83 done in 329.3s | avg_loss=35.309614 | global_step=42588
+[2026-02-17 13:19:09] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:24:37] Epoch 84 done in 328.2s | avg_loss=34.993982 | global_step=43095
+[2026-02-17 13:24:38] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:30:07] Epoch 85 done in 329.1s | avg_loss=35.125793 | global_step=43602
+[2026-02-17 13:30:07] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:35:36] Epoch 86 done in 328.4s | avg_loss=34.902698 | global_step=44109
+[2026-02-17 13:35:36] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:41:05] Epoch 87 done in 329.1s | avg_loss=34.750930 | global_step=44616
+[2026-02-17 13:41:05] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:46:34] Epoch 88 done in 328.8s | avg_loss=34.887091 | global_step=45123
+[2026-02-17 13:46:35] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:52:05] Epoch 89 done in 330.8s | avg_loss=34.658123 | global_step=45630
+[2026-02-17 13:52:06] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 13:57:35] Epoch 90 done in 329.1s | avg_loss=34.423383 | global_step=46137
+[2026-02-17 13:57:35] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:03:04] Epoch 91 done in 328.8s | avg_loss=34.252478 | global_step=46644
+[2026-02-17 14:03:04] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:08:33] Epoch 92 done in 328.9s | avg_loss=34.179523 | global_step=47151
+[2026-02-17 14:08:34] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:14:03] Epoch 93 done in 329.1s | avg_loss=33.992102 | global_step=47658
+[2026-02-17 14:14:03] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:19:33] Epoch 94 done in 329.5s | avg_loss=34.090640 | global_step=48165
+[2026-02-17 14:19:33] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:25:04] Epoch 95 done in 330.7s | avg_loss=33.915403 | global_step=48672
+[2026-02-17 14:25:04] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:30:33] Epoch 96 done in 329.2s | avg_loss=33.768933 | global_step=49179
+[2026-02-17 14:30:33] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:36:02] Epoch 97 done in 328.9s | avg_loss=33.669050 | global_step=49686
+[2026-02-17 14:36:03] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:41:32] Epoch 98 done in 329.2s | avg_loss=33.335517 | global_step=50193
+[2026-02-17 14:41:32] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:47:04] Epoch 99 done in 331.2s | avg_loss=33.465674 | global_step=50700
+[2026-02-17 14:47:04] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:52:34] Epoch 100 done in 330.3s | avg_loss=33.262674 | global_step=51207
+[2026-02-17 14:52:35] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 14:58:04] Epoch 101 done in 329.5s | avg_loss=33.388062 | global_step=51714
+[2026-02-17 14:58:04] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:03:33] Epoch 102 done in 328.8s | avg_loss=33.011184 | global_step=52221
+[2026-02-17 15:03:34] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:09:03] Epoch 103 done in 329.3s | avg_loss=33.032066 | global_step=52728
+[2026-02-17 15:09:03] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:14:32] Epoch 104 done in 328.7s | avg_loss=33.013662 | global_step=53235
+[2026-02-17 15:14:32] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:20:02] Epoch 105 done in 329.6s | avg_loss=32.805201 | global_step=53742
+[2026-02-17 15:20:02] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:25:32] Epoch 106 done in 329.9s | avg_loss=32.600778 | global_step=54249
+[2026-02-17 15:25:33] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:31:02] Epoch 107 done in 329.3s | avg_loss=32.441631 | global_step=54756
+[2026-02-17 15:31:02] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:36:31] Epoch 108 done in 328.9s | avg_loss=32.530122 | global_step=55263
+[2026-02-17 15:36:32] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:42:00] Epoch 109 done in 328.8s | avg_loss=32.205591 | global_step=55770
+[2026-02-17 15:42:01] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:47:30] Epoch 110 done in 329.6s | avg_loss=32.328707 | global_step=56277
+[2026-02-17 15:47:31] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:52:59] Epoch 111 done in 328.3s | avg_loss=32.237027 | global_step=56784
+[2026-02-17 15:52:59] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 15:58:31] Epoch 112 done in 331.4s | avg_loss=32.144463 | global_step=57291
+[2026-02-17 15:58:31] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:04:01] Epoch 113 done in 329.4s | avg_loss=31.942701 | global_step=57798
+[2026-02-17 16:04:01] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:09:29] Epoch 114 done in 328.2s | avg_loss=31.986485 | global_step=58305
+[2026-02-17 16:09:29] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:14:58] Epoch 115 done in 329.0s | avg_loss=31.546742 | global_step=58812
+[2026-02-17 16:14:59] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:20:29] Epoch 116 done in 329.8s | avg_loss=31.642879 | global_step=59319
+[2026-02-17 16:20:29] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:25:58] Epoch 117 done in 329.1s | avg_loss=31.479388 | global_step=59826
+[2026-02-17 16:25:58] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:31:28] Epoch 118 done in 329.6s | avg_loss=31.459857 | global_step=60333
+[2026-02-17 16:31:28] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:36:58] Epoch 119 done in 329.6s | avg_loss=31.340194 | global_step=60840
+[2026-02-17 16:36:58] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:42:29] Epoch 120 done in 330.6s | avg_loss=31.391917 | global_step=61347
+[2026-02-17 16:42:29] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:47:58] Epoch 121 done in 328.8s | avg_loss=31.169464 | global_step=61854
+[2026-02-17 16:47:59] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:53:28] Epoch 122 done in 329.5s | avg_loss=31.104084 | global_step=62361
+[2026-02-17 16:53:28] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 16:58:57] Epoch 123 done in 328.7s | avg_loss=31.129106 | global_step=62868
+[2026-02-17 16:58:57] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:04:27] Epoch 124 done in 329.4s | avg_loss=31.080777 | global_step=63375
+[2026-02-17 17:04:27] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:09:57] Epoch 125 done in 329.9s | avg_loss=30.985990 | global_step=63882
+[2026-02-17 17:09:57] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:15:28] Epoch 126 done in 330.8s | avg_loss=30.691595 | global_step=64389
+[2026-02-17 17:15:29] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:20:59] Epoch 127 done in 330.7s | avg_loss=30.781174 | global_step=64896
+[2026-02-17 17:21:00] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:26:29] Epoch 128 done in 329.7s | avg_loss=30.683476 | global_step=65403
+[2026-02-17 17:26:30] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:32:00] Epoch 129 done in 330.3s | avg_loss=30.773812 | global_step=65910
+[2026-02-17 17:32:00] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:37:30] Epoch 130 done in 330.2s | avg_loss=30.624253 | global_step=66417
+[2026-02-17 17:37:31] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:43:01] Epoch 131 done in 330.3s | avg_loss=30.401189 | global_step=66924
+[2026-02-17 17:43:01] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:48:32] Epoch 132 done in 330.4s | avg_loss=30.442771 | global_step=67431
+[2026-02-17 17:48:32] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:54:03] Epoch 133 done in 330.6s | avg_loss=30.168069 | global_step=67938
+[2026-02-17 17:54:03] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 17:59:34] Epoch 134 done in 330.6s | avg_loss=30.320652 | global_step=68445
+[2026-02-17 17:59:34] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:05:05] Epoch 135 done in 330.4s | avg_loss=30.180856 | global_step=68952
+[2026-02-17 18:05:05] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:10:35] Epoch 136 done in 330.2s | avg_loss=30.029395 | global_step=69459
+[2026-02-17 18:10:35] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:16:08] Epoch 137 done in 332.8s | avg_loss=30.010096 | global_step=69966
+[2026-02-17 18:16:09] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:21:39] Epoch 138 done in 330.7s | avg_loss=29.907636 | global_step=70473
+[2026-02-17 18:21:40] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:27:11] Epoch 139 done in 331.6s | avg_loss=29.862723 | global_step=70980
+[2026-02-17 18:27:12] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:32:43] Epoch 140 done in 331.6s | avg_loss=29.921297 | global_step=71487
+[2026-02-17 18:32:44] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:38:13] Epoch 141 done in 329.6s | avg_loss=29.648070 | global_step=71994
+[2026-02-17 18:38:13] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:43:44] Epoch 142 done in 330.6s | avg_loss=29.649027 | global_step=72501
+[2026-02-17 18:43:44] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:49:16] Epoch 143 done in 331.1s | avg_loss=29.567656 | global_step=73008
+[2026-02-17 18:49:16] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 18:54:47] Epoch 144 done in 330.9s | avg_loss=29.517841 | global_step=73515
+[2026-02-17 18:54:47] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:00:21] Epoch 145 done in 334.1s | avg_loss=29.257411 | global_step=74022
+[2026-02-17 19:00:22] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:05:52] Epoch 146 done in 329.9s | avg_loss=29.209223 | global_step=74529
+[2026-02-17 19:05:52] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:11:22] Epoch 147 done in 330.1s | avg_loss=29.400501 | global_step=75036
+[2026-02-17 19:11:22] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:16:52] Epoch 148 done in 330.0s | avg_loss=29.243190 | global_step=75543
+[2026-02-17 19:16:53] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:22:24] Epoch 149 done in 330.8s | avg_loss=29.089558 | global_step=76050
+[2026-02-17 19:22:24] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:27:55] Epoch 150 done in 330.9s | avg_loss=28.905946 | global_step=76557
+[2026-02-17 19:27:55] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:33:27] Epoch 151 done in 331.5s | avg_loss=29.046470 | global_step=77064
+[2026-02-17 19:33:27] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:38:57] Epoch 152 done in 330.0s | avg_loss=28.777809 | global_step=77571
+[2026-02-17 19:38:57] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:44:28] Epoch 153 done in 330.2s | avg_loss=28.948770 | global_step=78078
+[2026-02-17 19:44:28] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:50:00] Epoch 154 done in 331.8s | avg_loss=28.695228 | global_step=78585
+[2026-02-17 19:50:00] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 19:55:30] Epoch 155 done in 330.1s | avg_loss=28.741226 | global_step=79092
+[2026-02-17 19:55:31] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:01:02] Epoch 156 done in 331.4s | avg_loss=28.693476 | global_step=79599
+[2026-02-17 20:01:02] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:06:32] Epoch 157 done in 330.0s | avg_loss=28.435048 | global_step=80106
+[2026-02-17 20:06:33] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:12:04] Epoch 158 done in 331.4s | avg_loss=28.338637 | global_step=80613
+[2026-02-17 20:12:04] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:17:38] Epoch 159 done in 334.0s | avg_loss=28.420560 | global_step=81120
+[2026-02-17 20:17:39] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:23:10] Epoch 160 done in 331.3s | avg_loss=28.357932 | global_step=81627
+[2026-02-17 20:23:11] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:28:42] Epoch 161 done in 330.9s | avg_loss=28.356784 | global_step=82134
+[2026-02-17 20:28:42] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:34:13] Epoch 162 done in 330.5s | avg_loss=28.213196 | global_step=82641
+[2026-02-17 20:34:13] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
+[2026-02-17 20:39:44] Epoch 163 done in 330.9s | avg_loss=28.210982 | global_step=83148
+[2026-02-17 20:39:44] Saved checkpoint (overwrite): ./runs/imagenet100/barlow_bs256_dim512_ep1000/ckpt_latest.pt
