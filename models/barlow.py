@@ -92,18 +92,6 @@ def barlow_loss(z1, z2, bn, lambd):
         c = c / float(global_bs)
         loss = _barlow_core_loss(c, lambd)
     return loss
-# def barlow_loss(z1: torch.Tensor, z2: torch.Tensor, bn: nn.Module, lambd: float) -> torch.Tensor:
-#     """
-#     Standard (global) Barlow Twins loss.
-#     """
-#     world = dist.get_world_size() if _is_dist() else 1
-#     global_bs = z1.shape[0] * world
-
-#     c = bn(z1).T @ bn(z2)
-#     if _is_dist():
-#         dist.all_reduce(c)
-#     c = c / float(global_bs)
-#     return _barlow_core_loss(c, lambd)
 
 
 def jdrx_loss(
@@ -140,17 +128,6 @@ def jdrx_loss(
     base = b // k
     r = b % k
 
-    if sync_stats and _is_dist():
-        # 2) sum c across ranks
-        dist.all_reduce(c, op=dist.ReduceOp.SUM)
-
-        # 3) also sum subset size across ranks
-        sz = torch.tensor([size], device=z1.device, dtype=torch.float32)
-        dist.all_reduce(sz, op=dist.ReduceOp.SUM)
-        global_size = float(sz.item())
-    else:
-        global_size = float(size)
-
     losses = []
     start = 0
     for s in range(k):
@@ -166,6 +143,18 @@ def jdrx_loss(
         start = end
 
         c = _subset_standardize(z1s).T @ _subset_standardize(z2s)   # [d,d]
+       
+        if sync_stats and _is_dist():
+            # 2) sum c across ranks
+            dist.all_reduce(c, op=dist.ReduceOp.SUM)
+
+            # 3) also sum subset size across ranks
+            sz = torch.tensor([size], device=z1.device, dtype=torch.float32)
+            dist.all_reduce(sz, op=dist.ReduceOp.SUM)
+            global_size = float(sz.item())
+        else:
+            global_size = float(size)
+
         # 4) normalize by GLOBAL subset size
         c = c / global_size
 
