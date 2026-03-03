@@ -92,6 +92,18 @@ def barlow_loss(z1, z2, bn, lambd):
         c = c / float(global_bs)
         loss = _barlow_core_loss(c, lambd)
     return loss
+# def barlow_loss(z1: torch.Tensor, z2: torch.Tensor, bn: nn.Module, lambd: float) -> torch.Tensor:
+#     """
+#     Standard (global) Barlow Twins loss.
+#     """
+#     world = dist.get_world_size() if _is_dist() else 1
+#     global_bs = z1.shape[0] * world
+
+#     c = bn(z1).T @ bn(z2)
+#     if _is_dist():
+#         dist.all_reduce(c)
+#     c = c / float(global_bs)
+#     return _barlow_core_loss(c, lambd)
 
 
 def jdrx_loss(

@@ -33,6 +33,7 @@ class Solarization(object):
             return ImageOps.solarize(img)
         return img
 
+# for cifar10 and cifar100---------------------
 
 class Transform:
     """
@@ -115,92 +116,145 @@ def build_eval_transform(img_size: int = 32):
 
 
 
+## for imagenet-------------
+
+class Transform_imagenet:
+    """
+    ImageNet / 224x224 self-supervised augmentation (Barlow/DINO-style two-crop):
+      View 1: blur p=1.0, solarize p=0.0
+      View 2: blur p=0.1, solarize p=0.2
+    Returns (y1, y2).
+    """
+    def __init__(self, img_size: int = 224):
+        self.img_size = int(img_size)
+
+        norm = transforms.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225),
+        )
+
+        # Note: your pasted code does NOT specify scale=..., so this uses torchvision defaults.
+        crop = transforms.RandomResizedCrop(
+            self.img_size,
+            interpolation=transforms.InterpolationMode.BICUBIC,
+        )
+
+        jitter = transforms.ColorJitter(
+            brightness=0.4, contrast=0.4, saturation=0.2, hue=0.1
+        )
+
+        self.transform = transforms.Compose([
+            crop,
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.RandomApply([jitter], p=0.8),
+            transforms.RandomGrayscale(p=0.2),
+            GaussianBlur(p=1.0, sigma_min=0.1, sigma_max=2.0),
+            Solarization(p=0.0),
+            transforms.ToTensor(),
+            norm,
+        ])
+
+        self.transform_prime = transforms.Compose([
+            crop,
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.RandomApply([jitter], p=0.8),
+            transforms.RandomGrayscale(p=0.2),
+            GaussianBlur(p=0.1, sigma_min=0.1, sigma_max=2.0),
+            Solarization(p=0.2),
+            transforms.ToTensor(),
+            norm,
+        ])
+
+    def __call__(self, x: Image.Image):
+        y1 = self.transform(x)
+        y2 = self.transform_prime(x)
+        return y1, y2
 
 
-# import random
-# from PIL import Image, ImageFilter, ImageOps
-# from torchvision import transforms
+def build_train_transform_imagenet(img_size: int = 224):
+    return Transform_imagenet(img_size=img_size)
 
 
-# class GaussianBlur(object):
-#     def __init__(self, p: float, img_size: int, sigma_min=0.1, sigma_max_frac=0.02):
-#         self.p = p
-#         self.sigma_min = sigma_min
-#         self.sigma_max = sigma_max_frac * img_size
+def build_eval_transform_imagenet(img_size: int = 224):
+    # Standard ImageNet eval: resize -> center crop -> normalize
+    return transforms.Compose([
+        transforms.Resize(int(img_size * 256 / 224), interpolation=transforms.InterpolationMode.BICUBIC),
+        transforms.CenterCrop(img_size),
+        transforms.ToTensor(),
+        transforms.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225),
+        ),
+    ])
 
-#     def __call__(self, img: Image.Image) -> Image.Image:
-#         if random.random() < self.p:
-#             sigma = random.uniform(self.sigma_min, self.sigma_max)
-#             return img.filter(ImageFilter.GaussianBlur(radius=sigma))
-#         return img
+# for stl10 ---------------------
 
+class Transform_stl10:
+    """
+    STL-10 (96x96) Barlow Twins / DINO-style two-view augmentation:
+      View 1: blur p=1.0, solarize p=0.0
+      View 2: blur p=0.1, solarize p=0.2
 
+    This is commonly used for Barlow-like cross-correlation objectives and
+    works well for STL-10 resolution.
+    """
+    def __init__(self, img_size: int = 96):
+        self.img_size = int(img_size)
 
-# class Solarization(object):
-#     def __init__(self, p: float):
-#         self.p = p
+        norm = transforms.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225),
+        )
 
-#     def __call__(self, img: Image.Image) -> Image.Image:
-#         if random.random() < self.p:
-#             return ImageOps.solarize(img)
-#         return img
+        crop = transforms.RandomResizedCrop(
+            self.img_size,
+            scale=(0.2, 1.0),
+            interpolation=transforms.InterpolationMode.BICUBIC,
+        )
 
+        # DINO/Barlow-style jitter (a bit milder than SimCLR's 0.8/0.8/0.8/0.2)
+        jitter = transforms.ColorJitter(
+            brightness=0.4, contrast=0.4, saturation=0.2, hue=0.1
+        )
 
-# class Transform:
-#     """
-#     Returns (y1, y2) where y1 and y2 are two differently-augmented views of x.
-#     Matches the exact augmentation you pasted.
-#     """
-#     def __init__(self, img_size: int = 224):
-#         self.transform = transforms.Compose([
-#             transforms.RandomResizedCrop(img_size, interpolation=transforms.InterpolationMode.BICUBIC),
-#             transforms.RandomHorizontalFlip(p=0.5),
-#             transforms.RandomApply(
-#                 [transforms.ColorJitter(brightness=0.4, contrast=0.4,
-#                                         saturation=0.2, hue=0.1)],
-#                 p=0.8
-#             ),
-#             transforms.RandomGrayscale(p=0.2),
-#             GaussianBlur(p=1.0, img_size=img_size),
-#             Solarization(p=0.0),
-#             transforms.ToTensor(),
-#             transforms.Normalize(mean=[0.485, 0.456, 0.406],
-#                                  std=[0.229, 0.224, 0.225])
-#         ])
+        self.transform = transforms.Compose([
+            crop,
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.RandomApply([jitter], p=0.8),
+            transforms.RandomGrayscale(p=0.2),
+            GaussianBlur(p=1.0, sigma_min=0.1, sigma_max=2.0),
+            Solarization(p=0.0),
+            transforms.ToTensor(),
+            norm,
+        ])
 
-#         self.transform_prime = transforms.Compose([
-#             transforms.RandomResizedCrop(img_size, interpolation=transforms.InterpolationMode.BICUBIC),
-#             transforms.RandomHorizontalFlip(p=0.5),
-#             transforms.RandomApply(
-#                 [transforms.ColorJitter(brightness=0.4, contrast=0.4,
-#                                         saturation=0.2, hue=0.1)],
-#                 p=0.8
-#             ),
-#             transforms.RandomGrayscale(p=0.2),
-#             GaussianBlur(p=0.1, img_size=img_size),
-#             Solarization(p=0.2),
-#             transforms.ToTensor(),
-#             transforms.Normalize(mean=[0.485, 0.456, 0.406],
-#                                  std=[0.229, 0.224, 0.225])
-#         ])
+        self.transform_prime = transforms.Compose([
+            crop,
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.RandomApply([jitter], p=0.8),
+            transforms.RandomGrayscale(p=0.2),
+            GaussianBlur(p=0.1, sigma_min=0.1, sigma_max=2.0),
+            Solarization(p=0.2),
+            transforms.ToTensor(),
+            norm,
+        ])
 
-#     def __call__(self, x: Image.Image):
-#         y1 = self.transform(x)
-#         y2 = self.transform_prime(x)
-#         return y1, y2
-
-
-# def build_train_transform(img_size: int = 224):
-#     # keep your old API used by the dataloader
-#     return Transform(img_size=img_size)
+    def __call__(self, x: Image.Image):
+        y1 = self.transform(x)
+        y2 = self.transform_prime(x)
+        return y1, y2
 
 
-# def build_eval_transform(img_size: int = 224):
-#     # standard eval (single view)
-#     return transforms.Compose([
-#         transforms.Resize(int(img_size * 256 / 224)),
-#         transforms.CenterCrop(img_size),
-#         transforms.ToTensor(),
-#         transforms.Normalize(mean=(0.485, 0.456, 0.406),
-#                              std=(0.229, 0.224, 0.225)),
-#     ])
+def build_train_transform_stl10(img_size: int = 96):
+    return Transform_stl10(img_size=img_size)
+
+
+def build_eval_transform_stl10(img_size: int = 96):
+    # Standard eval for STL-10: no augmentation, just tensor + normalize
+    return transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225),
+        ),
+    ])

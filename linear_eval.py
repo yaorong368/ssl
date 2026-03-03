@@ -13,8 +13,10 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 from torch.utils.data.distributed import DistributedSampler
 
-from data.augment import build_eval_transform
+from data.augment import build_eval_transform, build_eval_transform_imagenet
 from models.barlow import my_models
+from models.simclr import SimCLR
+from models.byol import BYOL
 from utils.distributed import ddp_setup, get_world_size, is_main_process
 from utils.checkpoint import load_checkpoint, save_checkpoint
 
@@ -51,7 +53,8 @@ def main():
     p.add_argument("--weight_decay", type=float, default=0.0)
     p.add_argument("--img_size", type=int, default=224)
     p.add_argument("--amp", action="store_true")
-    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx;")
+    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx; simclr; simclr_jdrx; byol; byol_jdrx")
+    p.add_argument("--image_net", action="store_true", help="use imagenet transform")
     args = p.parse_args()
     os.makedirs(args.out_dir, exist_ok=True)
     log_path = os.path.join(args.out_dir, "linear_eval.log")
@@ -80,9 +83,12 @@ def main():
     device = torch.device(f"cuda:{local_rank}" if torch.cuda.is_available() else "cpu")
     _log(f"Distributed={is_distributed} world_size={get_world_size()} local_rank={local_rank} device={device}")
 
-
-    train_set = ImageFolder(os.path.join(args.data_dir, "train"), transform=build_eval_transform(args.img_size))
-    val_set = ImageFolder(os.path.join(args.data_dir, "val"), transform=build_eval_transform(args.img_size))
+    if args.image_net:
+        train_set = ImageFolder(os.path.join(args.data_dir, "train"), transform=build_eval_transform_imagenet(args.img_size))
+        val_set = ImageFolder(os.path.join(args.data_dir, "val"), transform=build_eval_transform_imagenet(args.img_size))
+    else:
+        train_set = ImageFolder(os.path.join(args.data_dir, "train"), transform=build_eval_transform(args.img_size))
+        val_set = ImageFolder(os.path.join(args.data_dir, "val"), transform=build_eval_transform(args.img_size))
     num_classes = len(train_set.classes)
 
     train_sampler = None
@@ -112,8 +118,18 @@ def main():
     _log(f"Loaded ckpt: {args.ckpt}")
     _log(f"Using projector={proj}, lambd={lambd}")
 
-    ssl = my_models(projector=proj, lambd=lambd, objective=args.method).to(device)
-    # ssl = BarlowTwins(projector=proj, lambd=lambd).to(device)
+    # ssl = my_models(projector=proj, lambd=lambd, objective=args.method).to(device)
+    if args.method == 'simclr':
+        ssl = SimCLR(projector=proj, backbone="resnet18", method=args.method).to(device)
+    elif args.method == 'simclr_jdrx':
+        ssl = SimCLR(projector=proj, backbone="resnet18", method=args.method).to(device)
+    elif args.method == 'byol':
+        ssl = BYOL(projector=proj, backbone="resnet18", m=0.996, pred_hidden_dim=512).to(device)
+    elif args.method == 'byol_jdrx':
+        ssl = BYOL(projector=proj, backbone="resnet18", m=0.996, pred_hidden_dim=512, method=args.method).to(device)
+    else:
+        ssl = my_models(projector=proj, lambd=lambd, objective=args.method).to(device)
+
     ssl.load_state_dict(ckpt["model"])
     ssl.eval()
 

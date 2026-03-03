@@ -10,8 +10,8 @@ import torch.nn as nn
 from torch.cuda.amp import autocast, GradScaler
 from tqdm import tqdm
 
-from data.augment import build_train_transform, build_eval_transform
-from data.dataloader import build_ssl_loader
+from data.augment import build_train_transform, build_train_transform_imagenet, build_train_transform_stl10
+from data.dataloader import build_ssl_loader, build_ssl_loader_stl10
 from models.barlow import my_models
 from optim.lars import LARS
 from utils.distributed import ddp_setup, is_main_process, get_world_size
@@ -78,8 +78,13 @@ def main():
 
     # logging
     p.add_argument("--log_name", type=str, default="train.log")
+    p.add_argument("--image_net", action="store_true", help="use imagenet transform")
+    p.add_argument("--stl10", action="store_true", help="use stl10 transform")
 
     args = p.parse_args()
+    
+    if args.image_net and args.stl10:
+        raise ValueError("Choose only one: --image_net or --stl10")
 
     torch.backends.cudnn.benchmark = True
 
@@ -140,14 +145,29 @@ def main():
     _log(f"Global batch={args.batch_size} per_gpu_batch={per_gpu_batch}")
 
     # SSL loader (train only)
-    transform = build_train_transform(args.img_size)
-    loader, sampler = build_ssl_loader(
-        data_dir=args.data_dir,
-        transform=transform,
-        batch_size=per_gpu_batch,
-        num_workers=args.num_workers,
-        is_distributed=is_distributed,
-    )
+    if args.image_net:
+        transform = build_train_transform_imagenet(args.img_size)
+    elif args.stl10:
+        transform = build_train_transform_stl10(args.img_size)
+    else:
+        transform = build_train_transform(args.img_size)
+
+    if args.stl10:
+        loader, sampler = build_ssl_loader_stl10(
+            data_dir=args.data_dir,
+            transform=transform,
+            batch_size=per_gpu_batch,
+            num_workers=args.num_workers,
+            is_distributed=is_distributed,
+        )
+    else:
+        loader, sampler = build_ssl_loader(
+            data_dir=args.data_dir,
+            transform=transform,
+            batch_size=per_gpu_batch,
+            num_workers=args.num_workers,
+            is_distributed=is_distributed,
+        )
     _log(f"Steps per epoch (len(loader)) = {len(loader)}")
 
     # Model: resnet18 + projector string + BN/all_reduce loss
