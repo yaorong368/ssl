@@ -13,14 +13,15 @@ from tqdm import tqdm
 from data.augment import build_train_transform, build_train_transform_imagenet, build_train_transform_stl10
 from data.dataloader import build_ssl_loader, build_ssl_loader_stl10
 from models.barlow import my_models
+from models.simclr import SimCLR
 from optim.lars import LARS
 from utils.distributed import ddp_setup, is_main_process, get_world_size
 from utils.checkpoint import save_checkpoint, load_checkpoint
 
 # Optional: linear eval hook (only runs on main process)
-from eval.linear_prob import linear_probe_eval
-from torchvision.datasets import ImageFolder
-from torch.utils.data import DataLoader
+# from eval.linear_prob import linear_probe_eval
+# from torchvision.datasets import ImageFolder
+# from torch.utils.data import DataLoader
 
 
 def adjust_learning_rate(args, optimizer, steps_per_epoch, step):
@@ -46,7 +47,7 @@ def main():
     p.add_argument("--data_dir", type=str, required=True)
     p.add_argument("--out_dir", type=str, default="./runs/")
     p.add_argument("--epochs", type=int, default=100)
-    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx;")
+    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx; simclr")
 
     # IMPORTANT: batch_size is GLOBAL (split across GPUs if DDP)
     p.add_argument("--batch_size", type=int, default=2048, help="GLOBAL batch size (split across GPUs)")
@@ -55,6 +56,7 @@ def main():
     p.add_argument("--num_subsets", type=int, default=4, help="number of subset for jdrx")
     p.add_argument("--sync_jdrx_stats", action="store_true",
                help="all-reduce JDRX subset stats across GPUs (global JDRX)")
+    p.add_argument("--temperature", type=float, default=0.2)     # SimCLR tau
 
 
     # Barlow-specific
@@ -172,13 +174,24 @@ def main():
 
     # Model: resnet18 + projector string + BN/all_reduce loss
     sync_stats = bool(args.sync_jdrx_stats) and is_distributed and (world_size > 1)
-    model = my_models(
-        projector=args.projector,
-        lambd=args.lambd,
-        objective=args.method,
-        num_subsets=args.num_subsets,
-        sync_jdrx_stats=sync_stats,   # NEW
-    ).to(device)
+    
+    if args.method == "simclr":
+        print('using method: simclr')
+        # for SimCLR, projector like "2048-2048-128" is typical (you can pass via --projector)
+        model = SimCLR(
+            projector=args.projector,
+            temperature=args.temperature,
+            backbone='resnet18',
+        ).to(device)
+    else:
+        print(f'using method: {args.method}')
+        model = my_models(
+            projector=args.projector,
+            lambd=args.lambd,
+            objective=args.method,
+            num_subsets=args.num_subsets,
+            sync_jdrx_stats=sync_stats,   # NEW
+        ).to(device)
 
 
 
