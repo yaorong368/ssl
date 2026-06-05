@@ -14,6 +14,7 @@ from data.augment import build_train_transform, build_train_transform_imagenet, 
 from data.dataloader import build_ssl_loader, build_ssl_loader_stl10
 from models.barlow import my_models
 from models.simclr import SimCLR
+from models.byol import BYOL
 from optim.lars import LARS
 from utils.distributed import ddp_setup, is_main_process, get_world_size
 from utils.checkpoint import save_checkpoint, load_checkpoint
@@ -47,7 +48,7 @@ def main():
     p.add_argument("--data_dir", type=str, required=True)
     p.add_argument("--out_dir", type=str, default="./runs/")
     p.add_argument("--epochs", type=int, default=100)
-    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx; simclr")
+    p.add_argument("--method", type=str, default='barlow', help="barlow; jdrx; simclr; vicreg")
 
     # IMPORTANT: batch_size is GLOBAL (split across GPUs if DDP)
     p.add_argument("--batch_size", type=int, default=2048, help="GLOBAL batch size (split across GPUs)")
@@ -64,6 +65,9 @@ def main():
     p.add_argument("--projector", type=str, default="8192-8192-8192")
     p.add_argument("--learning_rate_weights", type=float, default=0.2)
     p.add_argument("--learning_rate_biases", type=float, default=0.0048)
+
+    p.add_argument("--byol_m", type=float, default=0.996)
+    p.add_argument("--byol_pred_hidden_dim", type=int, default=1024)
 
     # misc
     p.add_argument("--img_size", type=int, default=224)
@@ -183,6 +187,14 @@ def main():
             temperature=args.temperature,
             backbone='resnet18',
         ).to(device)
+    elif args.method == "byol":
+        print("using method: byol")
+        model = BYOL(
+            projector=args.projector,
+            backbone="resnet18",
+            m=args.byol_m,
+            pred_hidden_dim=args.byol_pred_hidden_dim,
+        ).to(device)
     else:
         print(f'using method: {args.method}')
         model = my_models(
@@ -196,9 +208,10 @@ def main():
 
 
     if is_distributed and world_size > 1:
+        use_broadcast_buffers = True if args.method == "byol" else False
         model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
         model = nn.parallel.DistributedDataParallel(
-            model, device_ids=[local_rank], broadcast_buffers=False
+            model, device_ids=[local_rank], broadcast_buffers=use_broadcast_buffers
         )
         _log("Wrapped model with SyncBN + DDP (broadcast_buffers=False)")
 
@@ -273,6 +286,15 @@ def main():
             scaler.scale(loss).backward()
             scaler.step(opt)
             scaler.update()
+
+            if args.method == "byol":
+                # Calculate dynamic BYOL momentum
+                max_steps = args.epochs * steps_per_epoch
+                current_m = 1 - (1 - args.byol_m) * (math.cos(math.pi * global_step / max_steps) + 1) / 2
+                
+                m_for_update = model.module if isinstance(model, nn.parallel.DistributedDataParallel) else model
+                with torch.no_grad():
+                    m_for_update.update_moving_average(current_m)
 
             loss_val = float(loss.detach().cpu())
             loss_sum += loss_val

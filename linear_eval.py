@@ -53,8 +53,9 @@ def main():
     p.add_argument("--weight_decay", type=float, default=0.0)
     p.add_argument("--img_size", type=int, default=224)
     p.add_argument("--amp", action="store_true")
-    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx; simclr; simclr_jdrx; byol; byol_jdrx")
+    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx; simclr;")
     p.add_argument("--image_net", action="store_true", help="use imagenet transform")
+    p.add_argument("--byol_pred_hidden_dim", type=int, default=1024)
     args = p.parse_args()
     os.makedirs(args.out_dir, exist_ok=True)
     log_path = os.path.join(args.out_dir, "linear_eval.log")
@@ -120,15 +121,12 @@ def main():
 
     # ssl = my_models(projector=proj, lambd=lambd, objective=args.method).to(device)
     if args.method == 'simclr':
-        ssl = SimCLR(projector=proj, backbone="resnet18", method=args.method).to(device)
-    elif args.method == 'simclr_jdrx':
-        ssl = SimCLR(projector=proj, backbone="resnet18", method=args.method).to(device)
+        ssl = SimCLR(projector=proj, backbone="resnet18").to(device)
     elif args.method == 'byol':
-        ssl = BYOL(projector=proj, backbone="resnet18", m=0.996, pred_hidden_dim=512).to(device)
-    elif args.method == 'byol_jdrx':
-        ssl = BYOL(projector=proj, backbone="resnet18", m=0.996, pred_hidden_dim=512, method=args.method).to(device)
+        ssl = BYOL(projector=proj, backbone="resnet18", m=0.996, pred_hidden_dim=args.byol_pred_hidden_dim).to(device)
     else:
         ssl = my_models(projector=proj, lambd=lambd, objective=args.method).to(device)
+
 
     ssl.load_state_dict(ckpt["model"])
     ssl.eval()

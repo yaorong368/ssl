@@ -2,6 +2,9 @@ import torch
 import torch.nn as nn
 import torch.distributed as dist
 import torchvision
+import torch.nn.functional as F
+import torch.distributed.nn.functional as dist_nn
+
 
 class GlobalBatchNorm1d(nn.Module):
     """
@@ -50,6 +53,59 @@ class GlobalBatchNorm1d(nn.Module):
                 x_hat = x_hat * self.weight.float() + self.bias.float()
 
         return x_hat.to(x_dtype)
+
+
+###for vicreg
+
+
+def gather_concat(x):
+    if not _is_dist():
+        return x
+    xs = dist_nn.all_gather(x.contiguous())
+    return torch.cat(xs, dim=0)
+
+def vicreg_variance_term(z: torch.Tensor, gamma: float = 1.0, eps: float = 1e-4) -> torch.Tensor:
+    std = torch.sqrt(z.var(dim=0, unbiased=False) + eps)
+    return F.relu(gamma - std).mean()
+
+
+def vicreg_covariance_term(z: torch.Tensor) -> torch.Tensor:
+    z = z - z.mean(dim=0)
+    n, d = z.shape
+    cov = (z.T @ z) / max(n - 1, 1)
+    return off_diagonal(cov).pow(2).sum() / d
+
+
+def vicreg_loss(
+    z1: torch.Tensor,
+    z2: torch.Tensor,
+    sim_coeff: float = 25.0,
+    std_coeff: float = 25.0,
+    cov_coeff: float = 1.0,
+    gamma: float = 1.0,
+    eps: float = 1e-4,
+) -> torch.Tensor:
+    with torch.cuda.amp.autocast(enabled=False):
+        z1 = z1.float()
+        z2 = z2.float()
+
+        sim_loss = F.mse_loss(z1, z2)
+
+        z1_all = gather_concat(z1)
+        z2_all = gather_concat(z2)
+
+        std_loss = 0.5 * (
+            vicreg_variance_term(z1_all, gamma=gamma, eps=eps) +
+            vicreg_variance_term(z2_all, gamma=gamma, eps=eps)
+        )
+
+        cov_loss = 0.5 * (
+            vicreg_covariance_term(z1_all) +
+            vicreg_covariance_term(z2_all)
+        )
+
+        return sim_coeff * sim_loss + std_coeff * std_loss + cov_coeff * cov_loss
+####-------
 
 def _subset_standardize(x: torch.Tensor, eps: float = 1e-5) -> torch.Tensor:
     # x: [m, d], standardize over batch dim (m)
@@ -224,6 +280,15 @@ class my_models(nn.Module):
                 z1, z2, self.bn, self.lambd,
                 num_subsets=self.num_subsets,
                 sync_stats=self.sync_jdrx_stats,   # NEW
+            )
+        elif self.objective == "vicreg":
+            return vicreg_loss(
+                z1, z2,
+                # sim_coeff=self.vicreg_sim_coeff,
+                # std_coeff=self.vicreg_std_coeff,
+                # cov_coeff=self.vicreg_cov_coeff,
+                # gamma=self.vicreg_gamma,
+                # eps=self.vicreg_eps,
             )
         else:
             raise ValueError(f"Unknown objective: {self.objective}")

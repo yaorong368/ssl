@@ -2,6 +2,8 @@ import os
 import time
 import math
 import argparse
+import math
+
 
 import torch
 import torch.nn as nn
@@ -10,7 +12,10 @@ from tqdm import tqdm
 
 from data.augment import build_train_transform, build_eval_transform
 from data.dataloader import build_ssl_loader
-from models.barlow import my_models
+from models.barlow_non_ddp import my_models
+from models.simclr import SimCLR
+from models.byol import BYOL
+
 from optim.lars import LARS
 from utils.distributed import ddp_setup, is_main_process, get_world_size
 from utils.checkpoint import save_checkpoint, load_checkpoint
@@ -19,6 +24,7 @@ from utils.checkpoint import save_checkpoint, load_checkpoint
 from eval.linear_prob import linear_probe_eval
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
+
 
 
 def adjust_learning_rate(args, optimizer, steps_per_epoch, step):
@@ -44,13 +50,14 @@ def main():
     p.add_argument("--data_dir", type=str, required=True)
     p.add_argument("--out_dir", type=str, default="./runs/")
     p.add_argument("--epochs", type=int, default=100)
-    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx;")
+    p.add_argument("--method", type=str, default='barlow', help="barlw; jdrx; simclr; simclr_jdrx; byol")
 
     # IMPORTANT: batch_size is GLOBAL (split across GPUs if DDP)
     p.add_argument("--batch_size", type=int, default=2048, help="GLOBAL batch size (split across GPUs)")
     p.add_argument("--num_workers", type=int, default=8)
     p.add_argument("--weight_decay", type=float, default=1e-6)
     p.add_argument("--num_subsets", type=int, default=4, help="number of subset for jdrx")
+    p.add_argument("--temperature", type=float, default=0.2, help="for simclr")
 
     # Barlow-specific
     p.add_argument("--lambd", type=float, default=5e-3)
@@ -75,7 +82,8 @@ def main():
     p.add_argument("--log_name", type=str, default="train.log")
 
     args = p.parse_args()
-
+    
+    torch.backends.cudnn.deterministic = False
     torch.backends.cudnn.benchmark = True
 
     # -------------------------
@@ -83,7 +91,7 @@ def main():
     # methodname + batchsize + feature_dim + epochs
     # -------------------------
     method = args.method
-    if method =='jdrx':
+    if method in ['jdrx', 'simclr_jdrx']:
         feat_dim = int(args.projector.split("-")[-1])  # last projector dim
         run_name = f"{method}_bs{args.batch_size}_dim{feat_dim}_ep{args.epochs}_subsize{args.num_subsets}"
         args.out_dir = os.path.join(args.out_dir, run_name)
@@ -143,7 +151,16 @@ def main():
     _log(f"Steps per epoch (len(loader)) = {len(loader)}")
 
     # Model: resnet18 + projector string + BN/all_reduce loss
-    model = my_models(projector=args.projector, lambd=args.lambd, objective=args.method, num_subsets=args.num_subsets).to(device)
+    if args.method == 'simclr':
+        model = SimCLR(projector=args.projector, temperature=args.temperature, backbone="resnet18", method=args.method).to(device)
+    elif args.method == 'simclr_jdrx':
+        model = SimCLR(projector=args.projector, temperature=args.temperature, backbone="resnet18", method=args.method, num_subsets=args.num_subsets).to(device)
+    elif args.method == 'byol':
+        model = BYOL(projector=args.projector, backbone="resnet18", m=0.996, pred_hidden_dim=512, method=args.method).to(device)
+    elif args.method == 'byol_jdrx':
+        model = BYOL(projector=args.projector, backbone="resnet18", m=0.996, pred_hidden_dim=512, method=args.method, num_subsets=args.num_subsets).to(device)
+    else:
+        model = my_models(projector=args.projector, lambd=args.lambd, objective=args.method, num_subsets=args.num_subsets).to(device)
 
     if is_distributed and world_size > 1:
         model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
@@ -197,6 +214,7 @@ def main():
 
     steps_per_epoch = len(loader)
 
+    best_loss = math.inf
     for epoch in range(start_epoch, args.epochs):
         if sampler is not None:
             sampler.set_epoch(epoch)
@@ -212,8 +230,11 @@ def main():
         loss_sum = 0.0
 
         for it, ((x1, x2), _) in enumerate(loader):
-            x1 = x1.to(device, non_blocking=True).contiguous(memory_format=torch.channels_last)
-            x2 = x2.to(device, non_blocking=True).contiguous(memory_format=torch.channels_last)
+            x1 = x1.to(device, non_blocking=True).contiguous()
+            x2 = x2.to(device, non_blocking=True).contiguous()
+
+            # x1 = x1.to(device, non_blocking=True).contiguous(memory_format=torch.channels_last)
+            # x2 = x2.to(device, non_blocking=True).contiguous(memory_format=torch.channels_last)
 
             adjust_learning_rate(args, opt, steps_per_epoch, global_step)
 
@@ -244,67 +265,27 @@ def main():
         dt = time.time() - t0
         avg_loss = loss_sum / max(1, steps_per_epoch)
         _log(f"Epoch {epoch} done in {dt:.1f}s | avg_loss={avg_loss:.6f} | global_step={global_step}")
-        # Save checkpoint EVERY epoch (overwrite previous)
+
+        # Save checkpoint ONLY when avg_loss improves
         if is_main_process():
-            state = {
-                "epoch": epoch,
-                "global_step": global_step,
-                "model": model.module.state_dict() if isinstance(model, nn.parallel.DistributedDataParallel) else model.state_dict(),
-                "opt": opt.state_dict(),
-                "scaler": scaler.state_dict(),
-                "args": vars(args),
-            }
-            save_checkpoint(ckpt_path_latest, state)
-            _log(f"Saved checkpoint (overwrite): {ckpt_path_latest}")
+            if avg_loss < best_loss:
+                best_loss = avg_loss
+
+                state = {
+                    "epoch": epoch,
+                    "global_step": global_step,
+                    "best_loss": best_loss,  # NEW
+                    "model": model.module.state_dict() if isinstance(model, nn.parallel.DistributedDataParallel) else model.state_dict(),
+                    "opt": opt.state_dict(),
+                    "scaler": scaler.state_dict(),
+                    "args": vars(args),
+                }
+                save_checkpoint(ckpt_path_latest, state)
+                _log(f"Saved checkpoint (improved): {ckpt_path_latest} | best_loss={best_loss:.6f}")
+            else:
+                _log(f"Not saved: avg_loss={avg_loss:.6f} | best_loss={best_loss:.6f}")
 
 
-        # # Linear evaluation hook every N epochs (monitoring only; runs on main rank)
-        # do_linear = (args.linear_eval_every > 0) and ((epoch + 1) % args.linear_eval_every == 0)
-        # if do_linear and is_main_process():
-        #     _log(f"=== Running linear evaluation at epoch {epoch} ===")
-
-        #     ssl_model = model.module if isinstance(model, nn.parallel.DistributedDataParallel) else model
-        #     backbone = ssl_model.backbone
-
-        #     # NOTE: your original code used build_eval_transform for BOTH train/val.
-        #     # Keeping behavior unchanged here; if you want standard lincls-style,
-        #     # swap train transform to RandomResizedCrop+HFlip.
-        #     train_set = ImageFolder(os.path.join(args.data_dir, "train"), transform=build_eval_transform(args.img_size))
-        #     val_set = ImageFolder(os.path.join(args.data_dir, "val"), transform=build_eval_transform(args.img_size))
-
-        #     train_loader_lin = DataLoader(
-        #         train_set,
-        #         batch_size=args.linear_eval_batch_size,
-        #         shuffle=True,
-        #         num_workers=args.num_workers,
-        #         pin_memory=True,
-        #         drop_last=True,
-        #         persistent_workers=(args.num_workers > 0),
-        #         prefetch_factor=4 if args.num_workers > 0 else None,
-        #     )
-        #     val_loader_lin = DataLoader(
-        #         val_set,
-        #         batch_size=args.linear_eval_batch_size,
-        #         shuffle=False,
-        #         num_workers=args.num_workers,
-        #         pin_memory=True,
-        #         drop_last=False,
-        #         persistent_workers=(args.num_workers > 0),
-        #         prefetch_factor=4 if args.num_workers > 0 else None,
-        #     )
-
-        #     metrics = linear_probe_eval(
-        #         backbone=backbone,
-        #         train_loader=train_loader_lin,
-        #         val_loader=val_loader_lin,
-        #         num_classes=len(train_set.classes),
-        #         device=device,
-        #         epochs=args.linear_eval_epochs,
-        #         lr=args.linear_eval_lr,
-        #         weight_decay=0.0,
-        #         amp=args.amp,
-        #     )
-        #     _log(f"=== Linear eval done: {metrics} ===")
 
     _log("===== TRAINING COMPLETE =====")
 
